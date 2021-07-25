@@ -5,10 +5,13 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "env-cmd -e development node build/server.js",
+    "start": "env-cmd -e development node build/server.js", 
     "start:dev": "env-cmd -e development nodemon --exec babel-node src/server.js",
     "db:migrate": "env-cmd -e development  babel-node $(npm bin)/knex migrate:latest --knexfile ./src/database/knexfile.js",
     "db:migrate:make": "env-cmd -e development babel-node $(npm bin)/knex migrate:make --knexfile ./src/database/knexfile.js",
+    "db:migrate:rollback": "env-cmd -e development  babel-node $(npm bin)/knex migrate:rollback --knexfile ./src/database/knexfile.js",
+    "db:seed:make": "env-cmd -e development babel-node $(npm bin)/knex seed:make --knexfile ./src/seeds/knexfile.js",
+    "db:seed": "env-cmd -e development babel-node $(npm bin)/knex seed:run --knexfile ./src/seeds/knexfile.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d build"
   },

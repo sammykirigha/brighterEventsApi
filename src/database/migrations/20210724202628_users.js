@@ -1,9 +1,9 @@
-import  {addTableTimestamps} from '../addTablestamps';
+import  {addTableTimestamps} from '../addTablestamps.js';
 
 const USERS_TABLE = 'users';
 
 async function createUuidExtension(knex) {
-    await knex.raw('create extension if not exists "uuid-ossp');
+    await knex.raw('create extension if not exists "uuid-ossp"');
 }
 
 async function createUsersTable(knex) {

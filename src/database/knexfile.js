@@ -14,7 +14,11 @@ const defaultOptions = {
   connection: `postgresql://${username}:${password}@${host}/${name}`,
   migrations: {
     directory: path.join(path.dirname('.'), 'migrations')
+  },
+  seeds: {
+    directory: path.join(path.dirname('.'), 'seeds')
   }
+
 }
 
 const configs = {
