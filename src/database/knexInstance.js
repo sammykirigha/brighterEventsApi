@@ -2,7 +2,7 @@ import knex from 'knex';
 import knexStringCase from 'knex-stringcase';
 
 import { getConfig } from '../config/index.js';
-import configs from './knexfile';
+import configs from './knexfile.js';
 
 const config = configs[getConfig().env]
 

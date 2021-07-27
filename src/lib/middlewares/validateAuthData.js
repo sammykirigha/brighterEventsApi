@@ -4,7 +4,8 @@ const authData = {
     email: {
         type: String,
         required: true,
-        message: 'please provide a valid email'
+        message: 'please provide a valid email',
+        unique: true,
     },
     password: {
         type: String,
