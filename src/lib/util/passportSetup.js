@@ -4,8 +4,17 @@ import CustomError from './customError.js';
 import { getConfig } from '../../config/index.js';
 import { userResource } from '../../domains/accounts/users.resource.js';
 
-const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const { Strategy: LocalStrategy } = require('passport-local');
+// const { JwtStrategy, ExtractJwt } = require('passport-jwt');
+// const { LocalStrategy } = require('passport-local');
+
+import pkg from 'passport-jwt';
+import passportLocal from 'passport-local';
+
+import { ExtractJwt } from 'passport-jwt';
+// import { LocalStrategy } from 'passport-local';
+
+const JwtStrategy = pkg.Strategy;
+const LocalStrategy = passportLocal.Strategy;
 
 const config = getConfig();
 
@@ -48,6 +57,8 @@ passport.use(
 const localAuthentication = passport.authenticate('local', {
     session: false,
 });
+
+// console.log(localAuthentication);
 
 const jwtAuthentication = (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user) => {

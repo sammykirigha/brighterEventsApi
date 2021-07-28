@@ -25,6 +25,9 @@ var defaultOptions = {
   connection: "postgresql://".concat(username, ":").concat(password, "@").concat(host, "/").concat(name),
   migrations: {
     directory: _path.default.join(_path.default.dirname('.'), 'migrations')
+  },
+  seeds: {
+    directory: _path.default.join(_path.default.dirname('.'), 'seeds')
   }
 };
 var configs = {

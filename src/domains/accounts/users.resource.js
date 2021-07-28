@@ -8,14 +8,23 @@ class UserResource {
             createUserBody,
             '*',
         );
+        // console.log(created)
         return created[0]
     }
 
     async getUser(field, value) {
-        const user = await knexInstance(USERS_TABLE)
+        const query = knexInstance(USERS_TABLE)
             .where(field, value)
             .first()
+        console.log(query.toString())
+        const user = await query
         return user;
+    }
+
+    async getUsers() {
+        const users = await knexInstance(USERS_TABLE).select('*')
+        return users;
+
     }
 }
 

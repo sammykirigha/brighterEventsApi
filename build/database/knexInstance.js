@@ -13,7 +13,7 @@ var _knexStringcase = _interopRequireDefault(require("knex-stringcase"));
 
 var _index = require("../config/index.js");
 
-var _knexfile = _interopRequireDefault(require("./knexfile"));
+var _knexfile = _interopRequireDefault(require("./knexfile.js"));
 
 var config = _knexfile.default[(0, _index.getConfig)().env];
 
