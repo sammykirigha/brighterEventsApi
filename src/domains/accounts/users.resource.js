@@ -8,7 +8,6 @@ class UserResource {
             createUserBody,
             '*',
         );
-        // console.log(created)
         return created[0]
     }
 

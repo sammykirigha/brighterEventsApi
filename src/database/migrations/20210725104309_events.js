@@ -11,7 +11,11 @@ async function createEventsTable(knex) {
         table.string('location').notNullable();
         table.date('date').notNullable();
         table.time('time').notNullable();
-        table.string('created_by').references('id').inTable(USERS_TABLE).notNullable().onDelete('cascade');
+        table.string('created_by')
+             .references('id')
+             .inTable(USERS_TABLE)
+             .notNullable()
+             .onDelete('cascade');
     })
     await addTableTimestamps(knex, EVENTS_TABLE)
 }

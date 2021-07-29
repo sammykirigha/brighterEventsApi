@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import errorHandler from './lib/middlewares/globalErrorHandle.js';
 import { getUsersRouter } from './domains/accounts/users.routes.js';
+import { getEventsRouter } from './domains/events/events.routes.js';
 
 
 class App {
@@ -18,6 +19,7 @@ class App {
         app.use(express.json());
 
         this.addApiRoute(getUsersRouter());
+        this.addApiRoute(getEventsRouter());
 
 
         if (app.get('env') === 'development') {
