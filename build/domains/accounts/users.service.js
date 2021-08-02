@@ -42,12 +42,12 @@ var UserService = /*#__PURE__*/function () {
     key: "create",
     value: function () {
       var _create = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(createUserBody) {
-        var email, password, existingUser, encryptedPassword, createdUser, token, registeredUser;
+        var username, email, password, existingUser, encryptedPassword, createdUser, token, registeredUser;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                email = createUserBody.email, password = createUserBody.password;
+                username = createUserBody.username, email = createUserBody.email, password = createUserBody.password;
                 _context.next = 3;
                 return _usersResource.userResource.getUser('email', email);
 
@@ -65,6 +65,7 @@ var UserService = /*#__PURE__*/function () {
                 encryptedPassword = _encrypt.default.generateHash(password);
                 _context.next = 9;
                 return _usersResource.userResource.create({
+                  username: username,
                   email: email,
                   password: encryptedPassword
                 });
@@ -102,6 +103,37 @@ var UserService = /*#__PURE__*/function () {
       }, config.secretKey);
       return token;
     }
+  }, {
+    key: "getMyUsers",
+    value: function () {
+      var _getMyUsers = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var allUsers;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _usersResource.userResource.getUsers();
+
+              case 2:
+                allUsers = _context2.sent;
+                console.log("all ", allUsers);
+                return _context2.abrupt("return", allUsers);
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getMyUsers() {
+        return _getMyUsers.apply(this, arguments);
+      }
+
+      return getMyUsers;
+    }()
   }]);
   return UserService;
 }();

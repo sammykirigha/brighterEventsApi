@@ -58,19 +58,21 @@ var UserResource = /*#__PURE__*/function () {
     key: "getUser",
     value: function () {
       var _getUser = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(field, value) {
-        var user;
+        var query, user;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return (0, _knexInstance.knexInstance)(USERS_TABLE).where(field, value).first();
+                query = (0, _knexInstance.knexInstance)(USERS_TABLE).where(field, value).first();
+                console.log(query.toString());
+                _context2.next = 4;
+                return query;
 
-              case 2:
+              case 4:
                 user = _context2.sent;
                 return _context2.abrupt("return", user);
 
-              case 4:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -83,6 +85,36 @@ var UserResource = /*#__PURE__*/function () {
       }
 
       return getUser;
+    }()
+  }, {
+    key: "getUsers",
+    value: function () {
+      var _getUsers = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var users;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return (0, _knexInstance.knexInstance)(USERS_TABLE).select('*');
+
+              case 2:
+                users = _context3.sent;
+                return _context3.abrupt("return", users);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function getUsers() {
+        return _getUsers.apply(this, arguments);
+      }
+
+      return getUsers;
     }()
   }]);
   return UserResource;

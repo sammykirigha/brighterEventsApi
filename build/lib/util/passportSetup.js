@@ -2,6 +2,8 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+var _typeof = require("@babel/runtime/helpers/typeof");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -21,13 +23,19 @@ var _index = require("../../config/index.js");
 
 var _usersResource = require("../../domains/accounts/users.resource.js");
 
-var _require = require('passport-jwt'),
-    JwtStrategy = _require.Strategy,
-    ExtractJwt = _require.ExtractJwt;
+var _passportJwt = _interopRequireWildcard(require("passport-jwt"));
 
-var _require2 = require('passport-local'),
-    LocalStrategy = _require2.Strategy;
+var _passportLocal = _interopRequireDefault(require("passport-local"));
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+// const { JwtStrategy, ExtractJwt } = require('passport-jwt');
+// const { LocalStrategy } = require('passport-local');
+// import { LocalStrategy } from 'passport-local';
+var JwtStrategy = _passportJwt.default.Strategy;
+var LocalStrategy = _passportLocal.default.Strategy;
 var config = (0, _index.getConfig)();
 
 _passport.default.use(new LocalStrategy({
@@ -90,7 +98,7 @@ _passport.default.use(new LocalStrategy({
 }()));
 
 _passport.default.use(new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: _passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: config.secretKey,
   jsonWebTokenOptions: {
     maxAge: config.jwtExpiration
@@ -101,7 +109,8 @@ _passport.default.use(new JwtStrategy({
 
 var localAuthentication = _passport.default.authenticate('local', {
   session: false
-});
+}); // console.log(localAuthentication);
+
 
 exports.localAuthentication = localAuthentication;
 

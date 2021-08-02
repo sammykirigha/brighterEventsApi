@@ -21,6 +21,8 @@ var _globalErrorHandle = _interopRequireDefault(require("./lib/middlewares/globa
 
 var _usersRoutes = require("./domains/accounts/users.routes.js");
 
+var _eventsRoutes = require("./domains/events/events.routes.js");
+
 var App = /*#__PURE__*/function () {
   function App() {
     (0, _classCallCheck2.default)(this, App);
@@ -39,6 +41,7 @@ var App = /*#__PURE__*/function () {
       var app = (0, _express.default)();
       app.use(_express.default.json());
       this.addApiRoute((0, _usersRoutes.getUsersRouter)());
+      this.addApiRoute((0, _eventsRoutes.getEventsRouter)());
 
       if (app.get('env') === 'development') {
         app.use((0, _morgan.default)('dev'));

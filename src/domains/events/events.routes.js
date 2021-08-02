@@ -32,14 +32,6 @@ export function getEventsRouter() {
         })
     );
 
-    eventsRouter.get(
-        '/events/:id',
-        protectedAsyncRequestHandler(async (req, res) => {
-            const event = await eventsService.getEvents(req.query);
-            res.status(200).json({ message: 'success', event })
-        })
-    );
-
     eventsRouter.delete(
         '/events/:id',
         protectedAsyncRequestHandler(async (req, res) => {
