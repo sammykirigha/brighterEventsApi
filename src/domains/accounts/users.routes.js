@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { protectedAsyncRequestHandler } from '../../lib/util/protectedAsyncHandler.js';
 import {validateAuthData} from '../../lib/middlewares/validateAuthData.js';
 import { userService } from './users.service.js';
-import { localAuthentication }  from '../../lib/util/passportSetup.js';
+import { localAuthentication } from '../../lib/util/passportSetup.js';
 
 export function getUsersRouter() {
     const usersRouter = Router();
