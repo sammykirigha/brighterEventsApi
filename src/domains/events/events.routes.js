@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { protectedAsyncRequestHandler } from '../../lib/util/protectedAsyncHandler.js';
+import { eventsResource } from './events.resource.js';
 import { eventsService } from './events.service.js';
 
 export function getEventsRouter() {
@@ -31,6 +32,22 @@ export function getEventsRouter() {
             res.status(200).json({ message: 'success', events })
         })
     );
+
+    eventsRouter.get(
+        '/events/:id',
+        protectedAsyncRequestHandler(async (req, res) => {
+            const event = await eventsService.getEvent(req.params.id);
+            res.status(200).json({message: 'success', event})
+        })
+    )
+
+    eventsRouter.get(
+        '/events/search/:title',
+        protectedAsyncRequestHandler(async (req, res) => {
+            const event = await eventsService.getEventTitle(req.params.title);
+            res.status(200).json({message: 'success', event})
+        })
+    )
 
     eventsRouter.delete(
         '/events/:id',

@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node src/server.js",
+    "start": "env-cmd -e development babel-node src/server.js",
     "start:dev": "env-cmd -e development nodemon --exec babel-node src/server.js",
     "db:migrate": "env-cmd -e development  babel-node $(npm bin)/knex migrate:latest --knexfile ./src/database/knexfile.js",
     "db:migrate:make": "env-cmd -e development babel-node $(npm bin)/knex migrate:make --knexfile ./src/database/knexfile.js",

@@ -13,14 +13,13 @@ class App {
         return this;
     }
 
-
     createExpressApp() {
         const app = express();
+        
         app.use(express.json());
 
         this.addApiRoute(getUsersRouter());
         this.addApiRoute(getEventsRouter());
-
 
         if (app.get('env') === 'development') {
             app.use(morgan('dev'))
@@ -40,7 +39,6 @@ class App {
 
     start(config, logger) {
         const app = this.createExpressApp();
-
         app.listen(config.port, () => {
             logger.info(`app running on port ${config.port}`)
         })

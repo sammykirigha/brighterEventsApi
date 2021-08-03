@@ -8,16 +8,19 @@ class EventsService{
 
     async getEvents(reqQuery) {
         let events;
-        if (reqQuery.name) {
-            events = await eventsResource.getEventByName(reqQuery.name)
-        } else if (reqQuery.id) {
-            events = await eventsResource.getEventById(reqQuery.id)
-        } else {
             const { page = 1, limit = 10 } = reqQuery;
             const offset = (page - 1) * limit;
             events = await eventsResource.getEvents(offset, limit)
-        }
         return events;
+    }
+    // get by id
+    async getEvent(eventId) {
+        return eventsResource.getEventById(eventId)
+    }
+    //get by title
+    async getEventTitle(eventTitle) {
+
+        return eventsResource.getEventByName(eventTitle)
     }
 
     async updateEvent(updateBody, eventId) {
